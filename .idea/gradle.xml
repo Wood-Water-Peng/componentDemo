@@ -10,14 +10,16 @@
         <option name="modules">
           <set>
             <option value="$PROJECT_DIR$" />
+            <option value="$PROJECT_DIR$/annolib" />
             <option value="$PROJECT_DIR$/app" />
             <option value="$PROJECT_DIR$/componentbase" />
+            <option value="$PROJECT_DIR$/componentimpl" />
             <option value="$PROJECT_DIR$/componenttest" />
             <option value="$PROJECT_DIR$/homecomponent" />
             <option value="$PROJECT_DIR$/logincomponent" />
-            <option value="$PROJECT_DIR$/loginmodule" />
-            <option value="$PROJECT_DIR$/newhomecomponent" />
+            <option value="$PROJECT_DIR$/myProcessors" />
             <option value="$PROJECT_DIR$/othercomponent" />
+            <option value="$PROJECT_DIR$/profilemodule" />
             <option value="$PROJECT_DIR$/sharecomponent" />
           </set>
         </option>

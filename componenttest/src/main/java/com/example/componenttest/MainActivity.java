@@ -6,6 +6,7 @@ import android.os.Bundle;
 import android.view.View;
 
 import com.alibaba.android.arouter.launcher.ARouter;
+import com.example.componenttest.model.Person;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -13,6 +14,10 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        Person person = new Person();
+        person.setAge(1);
+        person.setName("dddd");
+        int age = person.getAge();
     }
 
     public void homeTabClicked(View view) {

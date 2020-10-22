@@ -1,20 +1,19 @@
 apply plugin: 'com.android.application'
 
 android {
-    compileSdkVersion 29
-    buildToolsVersion "29.0.3"
+    compileSdkVersion rootProject.ext.android.compileSdkVersion
 
     defaultConfig {
         applicationId "com.example.componenttest"
-        minSdkVersion 21
-        targetSdkVersion 29
+        minSdkVersion rootProject.ext.android.minSdkVersion
+        targetSdkVersion rootProject.ext.android.targetSdkVersion
         versionCode 1
         versionName "1.0"
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
         consumerProguardFiles 'consumer-rules.pro'
         javaCompileOptions {
             annotationProcessorOptions {
-                arguments = [ AROUTER_MODULE_NAME : project.getName() ]
+                arguments = [AROUTER_MODULE_NAME: project.getName()]
             }
         }
     }
@@ -26,37 +25,54 @@ android {
         }
     }
     flavorDimensions 'components'
+
     productFlavors {
-        homecomponent {
-            dimension = 'components'
-            applicationIdSuffix ".home"
-            versionNameSuffix "-home"
-        }
+
         logincomponent {
+            applicationId('com.example.component.login')
             dimension = 'components'
             applicationIdSuffix ".login"
             versionNameSuffix "-login"
         }
         othercomponent {
+            applicationId('com.example.component.other')
             dimension = 'components'
             applicationIdSuffix ".other"
             versionNameSuffix "-other"
+        }
+
+        homecomponent {
+            applicationId('com.example.component.home')
+            dimension = 'components'
+            applicationIdSuffix ".home"
+            versionNameSuffix "-home"
         }
     }
 
 }
 
+
+def library = rootProject.ext.dependencies
+def supportLibrary = rootProject.ext.dependencies.android.support
+
 dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
 
-    implementation 'androidx.appcompat:appcompat:1.2.0'
-    implementation 'androidx.constraintlayout:constraintlayout:2.0.2'
-    testImplementation 'junit:junit:4.12'
-    androidTestImplementation 'androidx.test.ext:junit:1.1.2'
-    androidTestImplementation 'androidx.test.espresso:espresso-core:3.3.0'
+    testImplementation 'junit:junit:' + library.junit
+    api 'com.android.support:appcompat-v7:' + supportLibrary.appcompat_v7
+    api 'com.android.support:recyclerview-v7:' + supportLibrary.recyclerview_v7
+    api 'com.android.support:cardview-v7:' + supportLibrary.cardview_v7
+    api 'com.android.support:design:' + library.design
+
 
     implementation project(':componentbase')
     othercomponentRuntimeOnly project(':othercomponent')
+
+    //implementation project(':othercomponent')
+
     logincomponentRuntimeOnly project(':logincomponent')
     homecomponentRuntimeOnly project(':homecomponent')
+
+    implementation project(':myProcessors')
+    annotationProcessor project(':myProcessors')
 }

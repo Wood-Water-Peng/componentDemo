@@ -6,7 +6,11 @@ import com.example.componentbase.BaseApp;
 import com.example.componentbase.ServiceFactory;
 import com.example.logincomponent.bean.service.LoginService;
 
+import java.security.PublicKey;
+
 public class LoginApp extends BaseApp {
+
+    public static Application applicationContext;
     @Override
     public void onCreate() {
         super.onCreate();
@@ -21,6 +25,6 @@ public class LoginApp extends BaseApp {
 
     @Override
     public void initModuleData(Application application) {
-
+        applicationContext=application;
     }
 }
